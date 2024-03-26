@@ -1,0 +1,21 @@
+@import "../../assets/colors";
+
+.task {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  &__checkbox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #e8e8e8;
+    border-radius: 50%;
+    margin-right: 10px;
+    cursor: pointer;
+    &.checked {
+      background-color: $light-green;
+    }
+  }
+}

@@ -1,6 +1,6 @@
 import { Dispatch } from "@reduxjs/toolkit";
 import { listsApi } from "../../services/api/lists";
-import { setLists } from "../reducers/lists";
+import { selectList, setLists } from "../reducers/lists";
 
 export const fetchLists = () => async (dispatch: Dispatch) => {
   try {
@@ -11,11 +11,20 @@ export const fetchLists = () => async (dispatch: Dispatch) => {
     console.log(e);
   }
 };
-export const fetchListById = (listId: number) => async (dispatch: Dispatch) => {
+export const fetchAllTasks = () => async (dispatch: Dispatch) => {
   try {
-    const lists = await listsApi.fetchListById();
+    const lists = await listsApi.fetchLists();
 
     dispatch(setLists(lists));
+  } catch (e) {
+    console.log(e);
+  }
+};
+export const fetchListById = (listId: number) => async (dispatch: Dispatch) => {
+  try {
+    const list = await listsApi.fetchListById(listId);
+
+    dispatch(selectList(list));
   } catch (e) {
     console.log(e);
   }

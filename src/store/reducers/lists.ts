@@ -3,12 +3,12 @@ import { List } from "../../types/lists";
 
 interface listsState {
   lists: List[];
-  selectedlist: List;
+  selectedlist: List | null;
 }
 
 const initialState: listsState = {
   lists: [],
-  selectedlist: {} as List,
+  selectedlist: null,
 };
 
 export const listsSlice = createSlice({
@@ -18,7 +18,7 @@ export const listsSlice = createSlice({
     setLists(state, action: PayloadAction<List[]>) {
       state.lists = action.payload;
     },
-    selectList(state, action: PayloadAction<List>) {
+    selectList(state, action: PayloadAction<List | null>) {
       state.selectedlist = action.payload;
     },
   },

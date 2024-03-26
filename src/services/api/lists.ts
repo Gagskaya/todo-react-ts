@@ -16,6 +16,13 @@ export const listsApi = {
 
     return data;
   },
+  // async fetchAllTasks() {
+  //   const { data } = await axios.get(
+  //     `${API_URL}/lists?_embed=color&_embed=tasks`
+  //   );
+
+  //   return data;
+  // },
   async addList(colorId: number, name: string) {
     await axios.post(`${API_URL}/lists`, {
       name,

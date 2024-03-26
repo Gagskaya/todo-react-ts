@@ -1,6 +1,7 @@
 @import "../../assets/colors";
 .sidebar {
-  width: 200px;
+  flex-basis: 27%;
+  max-width: 200px;
   background-color: rgb(245, 239, 239);
   padding: 15px 15px 80px 15px;
   &__alltasks {
@@ -8,8 +9,13 @@
     align-items: center;
     margin-top: 40px;
     padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
     img {
       margin-right: 7px;
+    }
+    &.active {
+      background-color: #fff;
     }
   }
   &__lists {

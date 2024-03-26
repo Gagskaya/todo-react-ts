@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import classNames from "classnames";
 
 import { List } from "../../types/lists";
@@ -13,6 +13,7 @@ import {
 import { getLists, getSelectedList } from "../../store/selectors/lists";
 import { fetchColors } from "../../store/actionCreators/colors";
 import { getColors } from "../../store/selectors/colors";
+import { selectList } from "../../store/reducers/lists";
 
 import allTasksSvg from "../../assets/img/all-tasks.svg";
 import addListSvg from "../../assets/img/add-list-plus.svg";
@@ -20,17 +21,19 @@ import deleteListSvg from "../../assets/img/delete-list.svg";
 import closeForm from "../../assets/img/close-form.svg";
 
 import "./Sidebar.scss";
-import { selectList } from "../../store/reducers/lists";
 
-function Sidebar() {
+const Sidebar = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const [isVisibleForm, setIsVisibleForm] = useState<boolean>(false);
   const [selectedColorId, selectColorid] = useState<number>(1);
-  const selectedList = useSelector(getSelectedList);
+  const [inputValue, setInputValue] = useState<string>("");
 
   const lists = useSelector(getLists);
   const colors = useSelector(getColors);
-  const [inputValue, setInputValue] = useState<string>("");
+  const selectedList = useSelector(getSelectedList);
 
   const toggleIsVisibleForm = () => {
     setIsVisibleForm(!isVisibleForm);
@@ -43,15 +46,22 @@ function Sidebar() {
     toggleIsVisibleForm();
   };
 
-  const onDeleteList = async (listId: number) => {
+  const onDeleteList = async (e: Event, listId: number) => {
+    e.preventDefault();
     const confirm = window.confirm("Вы действительно хотите удалить список?");
     if (confirm) {
       dispatch(deleteList(listId));
+      navigate("/");
     }
   };
 
   const onSelectList = (list: List) => {
     dispatch(selectList(list));
+  };
+
+  const onSelectAllTasks = () => {
+    navigate("/");
+    dispatch(selectList(null));
   };
 
   const clearForm = () => {
@@ -69,7 +79,13 @@ function Sidebar() {
   return (
     <div className="sidebar">
       {lists?.length ? (
-        <div className="sidebar__alltasks">
+        <div
+          className={classNames(
+            "sidebar__alltasks",
+            location.pathname === "/" ? "active" : ""
+          )}
+          onClick={onSelectAllTasks}
+        >
           <img src={allTasksSvg} alt="все задачи" />
           <span>Все задачи</span>
         </div>
@@ -93,7 +109,7 @@ function Sidebar() {
               <img
                 src={deleteListSvg}
                 alt="удалить список"
-                onClick={() => onDeleteList(item.id)}
+                onClick={(e) => onDeleteList(e, item.id)}
               />
             </div>
           </Link>
@@ -141,6 +157,6 @@ function Sidebar() {
       ) : null}
     </div>
   );
-}
+};
 
 export default Sidebar;
