@@ -1,8 +1,8 @@
-import { Dispatch } from "@reduxjs/toolkit";
 import { listsApi } from "../../services/api/lists";
 import { selectList, setLists } from "../reducers/lists";
+import { AppDispatch } from "..";
 
-export const fetchLists = () => async (dispatch: Dispatch) => {
+export const fetchLists = () => async (dispatch: AppDispatch) => {
   try {
     const lists = await listsApi.fetchLists();
 
@@ -11,7 +11,7 @@ export const fetchLists = () => async (dispatch: Dispatch) => {
     console.log(e);
   }
 };
-export const fetchAllTasks = () => async (dispatch: Dispatch) => {
+export const fetchAllTasks = () => async (dispatch: AppDispatch) => {
   try {
     const lists = await listsApi.fetchLists();
 
@@ -20,16 +20,17 @@ export const fetchAllTasks = () => async (dispatch: Dispatch) => {
     console.log(e);
   }
 };
-export const fetchListById = (listId: number) => async (dispatch: Dispatch) => {
-  try {
-    const list = await listsApi.fetchListById(listId);
+export const fetchListById =
+  (listId: string | undefined) => async (dispatch: AppDispatch) => {
+    try {
+      const list = await listsApi.fetchListById(listId);
 
-    dispatch(selectList(list));
-  } catch (e) {
-    console.log(e);
-  }
-};
-export const deleteList = (listId: number) => async (dispatch: Dispatch) => {
+      dispatch(selectList(list));
+    } catch (e) {
+      console.log(e);
+    }
+  };
+export const deleteList = (listId: number) => async (dispatch: AppDispatch) => {
   try {
     await listsApi.deleteList(listId);
     dispatch(fetchLists());
@@ -38,7 +39,7 @@ export const deleteList = (listId: number) => async (dispatch: Dispatch) => {
   }
 };
 export const addList =
-  (colorId: number, name: string) => async (dispatch: Dispatch) => {
+  (colorId: number, name: string) => async (dispatch: AppDispatch) => {
     try {
       await listsApi.addList(colorId, name);
       dispatch(fetchLists());

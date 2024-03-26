@@ -9,7 +9,7 @@ export const listsApi = {
 
     return data;
   },
-  async fetchListById(listId: number) {
+  async fetchListById(listId: string | undefined) {
     const { data } = await axios.get(
       `${API_URL}/lists/${listId}?_embed=color&_embed=tasks`
     );

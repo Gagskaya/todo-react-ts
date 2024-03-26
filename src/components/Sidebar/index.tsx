@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 
-import { useDispatch, useSelector } from "react-redux";
-import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import classNames from "classnames";
 
+import { useAppDispatch } from "../../store";
 import { List } from "../../types/lists";
 import {
   addList,
@@ -23,7 +24,7 @@ import closeForm from "../../assets/img/close-form.svg";
 import "./Sidebar.scss";
 
 const Sidebar = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -46,7 +47,7 @@ const Sidebar = () => {
     toggleIsVisibleForm();
   };
 
-  const onDeleteList = async (e: Event, listId: number) => {
+  const onDeleteList = async (e: any, listId: number) => {
     e.preventDefault();
     const confirm = window.confirm("Вы действительно хотите удалить список?");
     if (confirm) {
