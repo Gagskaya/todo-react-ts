@@ -1,0 +1,16 @@
+@import "./assets/colors";
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+.todo {
+  width: 750px;
+  height: auto;
+  margin: 200px auto 0 auto;
+  display: flex;
+}
