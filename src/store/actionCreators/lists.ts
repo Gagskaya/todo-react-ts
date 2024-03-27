@@ -11,15 +11,7 @@ export const fetchLists = () => async (dispatch: AppDispatch) => {
     console.log(e);
   }
 };
-export const fetchAllTasks = () => async (dispatch: AppDispatch) => {
-  try {
-    const lists = await listsApi.fetchLists();
 
-    dispatch(setLists(lists));
-  } catch (e) {
-    console.log(e);
-  }
-};
 export const fetchListById =
   (listId: string | undefined) => async (dispatch: AppDispatch) => {
     try {
@@ -30,7 +22,16 @@ export const fetchListById =
       console.log(e);
     }
   };
-export const deleteList = (listId: number) => async (dispatch: AppDispatch) => {
+export const fetchAllTasks = () => async (dispatch: AppDispatch) => {
+  try {
+    const lists = await listsApi.fetchLists();
+
+    dispatch(setLists(lists));
+  } catch (e) {
+    console.log(e);
+  }
+};
+export const deleteList = (listId: string) => async (dispatch: AppDispatch) => {
   try {
     await listsApi.deleteList(listId);
     dispatch(fetchLists());
@@ -43,6 +44,19 @@ export const addList =
     try {
       await listsApi.addList(colorId, name);
       dispatch(fetchLists());
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+export const editListTitle =
+  (listId: string | undefined, title: string | null) =>
+  async (dispatch: AppDispatch) => {
+    try {
+      await listsApi.editListTitle(listId, title);
+      // dispatch(fetchLists());
+      dispatch(fetchLists());
+      dispatch(fetchListById(listId));
     } catch (e) {
       console.log(e);
     }

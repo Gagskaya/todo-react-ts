@@ -38,6 +38,7 @@ const Sidebar = () => {
 
   const toggleIsVisibleForm = () => {
     setIsVisibleForm(!isVisibleForm);
+    clearForm();
   };
 
   const onAddList = async (colorId: number) => {
@@ -151,6 +152,7 @@ const Sidebar = () => {
           <button
             className="sidebar__form-btn"
             onClick={() => onAddList(selectedColorId)}
+            disabled={!inputValue.length}
           >
             Добавить
           </button>

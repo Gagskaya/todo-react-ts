@@ -2,7 +2,7 @@ import { Color } from "./colors";
 import { TaskI } from "./tasks";
 
 export interface List {
-  id: number;
+  id: string;
   name: string;
   colorId: number;
   color: Color;

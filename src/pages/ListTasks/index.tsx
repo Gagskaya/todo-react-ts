@@ -10,6 +10,7 @@ import Task from "../../components/Task";
 
 import "./ListTasks.scss";
 import ListTitle from "../../components/ListTitle";
+import AddTask from "../../components/AddTask";
 
 const ListTasks = () => {
   const selectedList = useSelector(getSelectedList);
@@ -21,10 +22,15 @@ const ListTasks = () => {
   }, []);
   return (
     <div className="list-tasks">
-      <ListTitle title={selectedList?.name} color={selectedList?.color?.hex} />
+      <ListTitle
+        title={selectedList?.name}
+        color={selectedList?.color?.hex}
+        listId={selectedList?.id}
+      />
       {selectedList?.tasks?.map((task) => (
         <Task {...task} key={task.id} />
       ))}
+      <AddTask listId={selectedList?.id} />
     </div>
   );
 };

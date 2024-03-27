@@ -1,13 +1,17 @@
 import { AppDispatch } from "..";
+import { listsApi } from "../../services/api/lists";
 
-import { setColors } from "../reducers/colors";
-import { colorsApi } from "../../services/api/colors";
+import { tasksApi } from "../../services/api/tasks";
+import { TaskI } from "../../types/tasks";
+import { fetchListById } from "./lists";
 
-export const toggleCompleted = () => async (dispatch: AppDispatch) => {
+export const addTask = (task: TaskI) => async (dispatch: AppDispatch) => {
   try {
-    const colors = await colorsApi.fetchColors();
+    await tasksApi.addTask(task);
+    const lists = await listsApi.fetchListById(task.listId);
+    console.log(lists);
 
-    dispatch(setColors(colors));
+    dispatch(fetchListById(task.listId));
   } catch (e) {
     console.log(e);
   }

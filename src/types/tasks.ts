@@ -1,6 +1,6 @@
 export interface TaskI {
-  id: number;
-  listId: number;
+  id?: string;
+  listId: string;
   text: string;
   completed: boolean;
 }

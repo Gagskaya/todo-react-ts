@@ -1,0 +1,41 @@
+@import "../../assets/colors";
+.add-task {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin-top: 25px;
+  img {
+    margin-right: 7px;
+  }
+}
+.form {
+  margin-top: 25px;
+  &__input {
+    width: 100%;
+    border: 1px solid #efefef;
+    padding: 5px 10px;
+  }
+  &__btns {
+    margin-top: 15px;
+    button {
+      padding: 5px 15px;
+      border-radius: 4px;
+    }
+    &-add {
+      background-color: $light-green;
+      color: #fff;
+      margin-right: 10px;
+      &:hover {
+        background-color: $black;
+      }
+      &:disabled {
+        background-color: $grey;
+        cursor: not-allowed;
+      }
+    }
+    &-cancel {
+      background-color: #f4f6f8;
+      color: #9c9c9c;
+    }
+  }
+}

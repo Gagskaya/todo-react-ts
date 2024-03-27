@@ -16,20 +16,24 @@ export const listsApi = {
 
     return data;
   },
-  // async fetchAllTasks() {
-  //   const { data } = await axios.get(
-  //     `${API_URL}/lists?_embed=color&_embed=tasks`
-  //   );
+  async toggleTaskCheckbox(taskId: string | undefined, completed: boolean) {
+    await axios.patch(`${API_URL}/tasks/${taskId}`, {
+      completed,
+    });
+  },
 
-  //   return data;
-  // },
   async addList(colorId: number, name: string) {
     await axios.post(`${API_URL}/lists`, {
       name,
       colorId,
     });
   },
-  async deleteList(listId: number) {
+  async deleteList(listId: string | undefined) {
     await axios.delete(`${API_URL}/lists/${listId}`);
+  },
+  async editListTitle(listId: string | undefined, title: string | null) {
+    await axios.patch(`${API_URL}/lists/${listId}`, {
+      name: title,
+    });
   },
 };

@@ -1,23 +1,14 @@
-// import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-// import { Color } from "../../types/colors";
+import { createSlice } from "@reduxjs/toolkit";
 
-// interface colorsState {
-//   colors: Color[];
-// }
+interface tasksState {}
 
-// const initialState: colorsState = {
-//   colors: [],
-// };
+const initialState: tasksState = {};
 
-// export const tasksSlice = createSlice({
-//   name: "tasks",
-//   initialState,
-//   reducers: {
-//     toggleCompleted(state, action: PayloadAction<Color[]>) {
-//       state.colors = action.payload;
-//     },
-//   },
-// });
+export const tasksSlice = createSlice({
+  name: "tasks",
+  initialState,
+  reducers: {},
+});
 
-// export const { setColors } = tasksSlice.actions;
-// export const colorsReducer = tasksSlice.reducer;
+export const {} = tasksSlice.actions;
+export const tasksReducer = tasksSlice.reducer;
