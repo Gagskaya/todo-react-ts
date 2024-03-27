@@ -41,8 +41,8 @@ const Sidebar = () => {
     clearForm();
   };
 
-  const onAddList = async (colorId: number) => {
-    dispatch(addList(colorId, inputValue));
+  const onAddList = async () => {
+    dispatch(addList(selectedColorId, inputValue));
 
     clearForm();
     toggleIsVisibleForm();
@@ -135,6 +135,11 @@ const Sidebar = () => {
             className="sidebar__form-input"
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                onAddList();
+              }
+            }}
           />
           <div className="sidebar__form-colors">
             {colors?.map((item) => (
@@ -151,7 +156,7 @@ const Sidebar = () => {
           </div>
           <button
             className="sidebar__form-btn"
-            onClick={() => onAddList(selectedColorId)}
+            onClick={onAddList}
             disabled={!inputValue.length}
           >
             Добавить

@@ -11,13 +11,14 @@ interface Props {
 }
 
 const ListTitle = ({ title, color, listId }: Props) => {
-  console.log(listId);
-
   const dispatch = useAppDispatch();
   const onEditTitle = () => {
     const prompt = window.prompt("Введите новое название", title);
+    if (!prompt?.length) {
+      alert("Введите название!");
+      return;
+    }
     dispatch(editListTitle(listId, prompt));
-    console.log(prompt);
   };
   return (
     <div className="list-title">

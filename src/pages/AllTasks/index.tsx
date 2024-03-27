@@ -16,7 +16,7 @@ const AllTasks = () => {
 
   useEffect(() => {
     dispatch(fetchLists());
-  }, []);
+  }, [dispatch]);
   return (
     <div className="all-tasks">
       {lists?.map((list) => (

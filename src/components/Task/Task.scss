@@ -14,11 +14,20 @@
     border-radius: 50%;
     margin-right: 10px;
     cursor: pointer;
+
     &.checked {
       background-color: $light-green;
     }
     &.disabled {
       cursor: not-allowed;
+    }
+  }
+  &__delete {
+    margin-left: auto;
+    opacity: 0.4;
+    &:hover {
+      opacity: 1;
+      cursor: pointer;
     }
   }
 }

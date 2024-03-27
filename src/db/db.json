@@ -1,34 +1,34 @@
 {
   "lists": [
     {
-      "id": "f516",
-      "name": "222222",
-      "colorId": 4
+      "id": "cad1",
+      "name": "Фронтенд",
+      "colorId": 1
     },
     {
-      "id": "c4da",
-      "name": "111",
-      "colorId": 3
+      "id": "ac45",
+      "name": "Бэкенд",
+      "colorId": 2
     }
   ],
   "tasks": [
     {
-      "id": "91f2",
-      "text": "111",
-      "completed": true,
-      "listId": "f516"
+      "id": "e7c4",
+      "text": "Выучить JS",
+      "completed": false,
+      "listId": "cad1"
     },
     {
-      "id": "a920",
-      "text": "333",
-      "completed": true,
-      "listId": "c4da"
+      "id": "2232",
+      "text": "Выучить React",
+      "completed": false,
+      "listId": "cad1"
     },
     {
-      "id": "504f",
-      "text": "1",
-      "completed": true,
-      "listId": "c4da"
+      "id": "f75e",
+      "text": "Выучить Python",
+      "completed": false,
+      "listId": "ac45"
     }
   ],
   "colors": [

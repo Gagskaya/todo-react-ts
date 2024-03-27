@@ -45,6 +45,11 @@ const AddTask = ({ listId }: Props) => {
           className="form__input"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              onSubmitForm();
+            }
+          }}
         />
         <div className="form__btns">
           <button
