@@ -4,14 +4,14 @@ import { API_URL } from "../../constants";
 export const listsApi = {
   async fetchLists() {
     const { data } = await axios.get(
-      `${API_URL}/lists?_embed=color&_embed=tasks`
+      `${API_URL}/lists?_expand=color&_embed=tasks`
     );
 
     return data;
   },
   async fetchListById(listId: string | undefined) {
     const { data } = await axios.get(
-      `${API_URL}/lists/${listId}?_embed=color&_embed=tasks`
+      `${API_URL}/lists/${listId}?_expand=color&_embed=tasks`
     );
 
     return data;
